@@ -12,13 +12,12 @@
 
 * Retrouver le chemin complet de la clé **Winlogon** dans le registre (HKEY Current User)
 
-* À l’aide du chemin de registre suivant, extraire les versions et les services pack des Framework .net installés  : 
+* À l’aide du chemin de registre suivant, extraire les versions et les services pack des Framework .net installés  :
 ```HKLM\software\microsoft\Net Framework setup\ndp```
 
 * À l’aide du chemin de registre suivant, activer le bureau à distance de votre machine : ```HKLM\SYSTEM\currentcontrolset\control\terminal server\fdenytsconnections```
 
 * À l’aide du chemin de registre suivant, lister toutes les clés usb connectés à votre machine hôte : ```HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR```
-
 
 ## Formatage de l'affichage
 
@@ -45,28 +44,25 @@
 * Mesurer le nombre de lignes, de mots et caractères d'un fichier texte
 
 * Créer une variable nommée **chaine** avec la valeur **Paul Atreides** et effectuer les opérations suivantes :
-	* Convertir les majuscules en minuscule
-	* Remplacer l'espace par un point
-	* Ajouter le suffixe **@cesi.fr**
-	* Extraire le prénom et le nom de la chaine
+  * Convertir les majuscules en minuscule
+  * Remplacer l'espace par un point
+  * Ajouter le suffixe **@cesi.fr**
+  * Extraire le prénom et le nom de la chaine
 
 * Transformer le retour de la commande ```netstat.exe``` en objet
-
 
 ## Conditions
 
 * Proposer à l’utilisateur de choisir un chiffre en 1 et 5 et afficher lui le chiffre choisi en toutes lettres
 
-
 ## Créer une boucle
 
 * Créer une boucle visuelle avec la commande Write-Progress (Barre de progression)
-
 
 ## Services WEB
 
 * À l'aide de l'URL suivante, récupérer l'ip publique de votre connexion Internet et stocker le resultat dans une variable :
 ```https://api.ipify.org?format=json```
 
-* À l'aide de l'URL suivante, récupérer la liste des communes correspondant au code postal de votre choix : 
-	```https://geo.api.gouv.fr/communes?codePostal=<code postal>```
+* À l'aide de l'URL suivante, récupérer la liste des communes correspondant au code postal de votre choix :
+```https://geo.api.gouv.fr/communes?codePostal=<code postal>```

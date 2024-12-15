@@ -2,7 +2,7 @@
 
 ## Utilisation de WMI
 
-### Prérequis : 
+### Prérequis
 
 * 3 machines Windows virtuelles nommées Client1, Client2, Client3. Les VMs doivent pouvoir communiquer avec la machine hôte. (NIC Bridged ou host-only)
 
@@ -10,13 +10,13 @@
 
 * Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :
 
-	```netsh advfirewall firewall set rule group="Infrastructure de gestion Windows (WMI)" new enable=yes```
+   ```netsh advfirewall firewall set rule group="Infrastructure de gestion Windows (WMI)" new enable=yes```
 
 ### WMI/CIM (Windows Management Instrumentation)
 
 * Sur l’hôte hébergeant les VMs, lancer une console powershell, puis la commande suivante :
 
-	````Get-WmiObject win32_bios -ComputerName client1 -Credential administrateur````
+   ```Get-WmiObject win32_bios -ComputerName client1 -Credential administrateur```
 
 * À l’aide de la commande précédente, créer un script qui va interroger toutes les VMs à l’aide d’une boucle.
 
@@ -28,9 +28,8 @@
 
 * Affiner la sortie de la commande précédente pour afficher en tableau les colonnes suivantes : Name,  Espace Libre (en GB) et taille (en GB). Garder ce script pour la prochaine partie.
 
-	```Conseil : utiliser la syntaxe :```
-	```@{label = <string> ; expression = {<script>}}```
-
+   ```Conseil : utiliser la syntaxe :```
+   ```@{label = <string> ; expression = {<script>}}```
 
 ## Envoi de message et HTML
 
@@ -39,6 +38,3 @@
 * À l’aide du script de la dernière partie (concernant Win32_LogicalDisk), envoyer la liste des partitions de vos 3 VMs à votre adresse mail.
 
 * Répétez l’opération précédente en convertissant le retour du script en HTML.
-
-
- 

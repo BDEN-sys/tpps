@@ -16,8 +16,9 @@ Install-Module UniversalDashboard -Force
 ```powershell
 Install-Script -Name server-performance-dashboard
 ```
+
 > Pour vérifier les scripts installés : Get-InstalledScript
- 
+
 * Lancer le script :
 
 ```powershell

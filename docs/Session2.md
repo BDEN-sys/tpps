@@ -61,7 +61,7 @@
 
 ## Services WEB
 
-* À l'aide de l'URL suivante, récupérer l'ip publique de votre connexion Internet et stocker le resultat dans une variable :
+* À l'aide de l'URL suivante, récupérer l'ip publique de votre connexion Internet et stocker le résultat dans une variable :
 ```https://api.ipify.org?format=json```
 
 * À l'aide de l'URL suivante, récupérer la liste des communes correspondant au code postal de votre choix :

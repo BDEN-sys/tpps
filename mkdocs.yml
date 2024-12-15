@@ -1,0 +1,6 @@
+site_name: TP Powershell CESI RISR
+dev_addr: '0.0.0.0:4000'
+site_author: 'Baptiste DENEUVE'
+theme: 'readthedocs'
+markdown_extensions:
+  - codehilite

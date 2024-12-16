@@ -1,6 +1,11 @@
-site_name: TP Powershell CESI RISR
+site_name: TP Powershell CESI
 dev_addr: '0.0.0.0:4000'
 site_author: 'Baptiste DENEUVE'
-theme: 'readthedocs'
+theme: 'material'
 markdown_extensions:
   - codehilite
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type : datetime

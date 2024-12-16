@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Baptiste DENEUVE" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Session 3 - TP Powershell CESI RISR</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Session 3";
+        var mkdocs_page_input_path = "Session3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TP Powershell CESI RISR
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Session 1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session2/">Session 2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Session 3</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#gestion-active-directory-avec-powershell">Gestion Active Directory avec Powershell</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parametrage-du-serveur">Paramétrage du serveur</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#installation-du-service-dannuaire-active-directory">Installation du service d’annuaire Active Directory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verification-de-linstallation-dactive-directory">Vérification de l’installation d’Active Directory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creation-dutilisateurs-depuis-un-fichier-de-type-csv">Création d'utilisateurs depuis un fichier de type CSV</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creation-dutilisateurs-active-directory-depuis-une-base-de-donnees-mysql">Création d'utilisateurs Active Directory depuis une base de données MySQL</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#prerequis-base-de-donnees-mariadb-mysql">Prérequis base de données MariaDB (Mysql)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#creation-des-utilisateurs-depuis-mysql">Création des utilisateurs depuis Mysql</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session4/">Session 4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session5/">Session 5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TP Powershell CESI RISR</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Session 3</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="session-3">Session 3</h1>
+<h2 id="gestion-active-directory-avec-powershell">Gestion Active Directory avec Powershell</h2>
+<h3 id="parametrage-du-serveur">Paramétrage du serveur</h3>
+<p>Nommer la machine virtuelle à l’aide de la commande Powershell suivante :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Rename-Computer</span> <span class="n">-NewName</span> <span class="n">DC1</span> <span class="n">-force</span>
+</code></pre></div>
+
+<p>Configurer la carte réseau comme indiqué ci-dessous avec Powershell :</p>
+<p>Trouver l’id de la carte réseau local à l’aide de Powershell :</p>
+<p><strong>Réponse (commande utilisée et id de la carte) :</strong></p>
+<p>Pour configurer l’adresse IPv4, la passerelle et le masque de sous réseau :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> 
+<span class="nb">New-NetIPAddress</span> <span class="n">-IPAddress</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-DefaultGateway</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">1</span> <span class="n">-PrefixLength</span> <span class="n">24</span>
+</code></pre></div>
+
+<p>Que signifie le paramètre PrefixLength dans la commande précédente ?</p>
+<p><strong>Réponse :</strong></p>
+<p>Vérifier la prise en compte de la configuration :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Get-NetIPConfiguration</span>
+</code></pre></div>
+
+<p>Tester la connexion avec le routeur :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Test-Connection</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-count</span> <span class="n">1</span>
+</code></pre></div>
+
+<p>À quelle commande historique correspond la commande ci-dessous ?</p>
+<p><strong>Réponse :</strong></p>
+<p>Configurer le client DNS</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Set-DnsClientServerAddress</span> <span class="n">-ServerAddresses</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span>
+</code></pre></div>
+
+<h3 id="installation-du-service-dannuaire-active-directory">Installation du service d’annuaire Active Directory</h3>
+<p>Créer le domaine <code>cesi&lt;id&gt;.lan</code> à l’aide de Powershell :</p>
+<p>Installation des outils de management et déploiement Active Directory :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Install-WindowsFeature</span> <span class="n">AD-Domain-Services</span><span class="p">,</span><span class="n">RSAT-ADDS-Tools</span>
+</code></pre></div>
+
+<p>Comment vérifier les rôles et fonctionnalités installés à l’aide de la console Powershell :</p>
+<p><strong>Réponse :</strong></p>
+<p>Redémarrer le serveur :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Restart-Computer</span>
+</code></pre></div>
+
+<p>Pour installer Active Directory, lancer la commande Powershell suivante :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Import-Module</span> <span class="n">ADDSDeployment</span> 
+<span class="nb">Install-ADDSForest</span> <span class="n">-CreateDnsDelegation</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-DatabasePath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-DomainMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="p">`</span>
+   <span class="n">-DomainName</span> <span class="s2">&quot;cesi.lan&quot;</span> <span class="n">-DomainNetbiosName</span> <span class="s2">&quot;CESI&quot;</span> <span class="n">-ForestMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="n">-InstallDns</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
+   <span class="n">-LogPath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-NoRebootOnCompletion</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-SysvolPath</span> <span class="s2">&quot;C:\Windows\SYSVOL&quot;</span> <span class="n">-Force</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
+   <span class="n">-SafeModeAdministratorPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">&quot;P@ssword&quot;</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Redémarrer le serveur :</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Restart-Computer</span>
+</code></pre></div>
+
+<h3 id="verification-de-linstallation-dactive-directory">Vérification de l’installation d’Active Directory</h3>
+<p>Rester la configuration d’Active Directory avec la commande DCDIAG.exe</p>
+<p>Tester la résolution de nom directe et inverse du nom FQDN de votre DC :</p>
+<p><strong>Réponse :</strong></p>
+<blockquote>
+<p>En principe, il est conseillé de gérer son domaine AD depuis une console de type client. Dans cas les outils de gestion RSAT doivent être installés, dans le cas d’un DC, ils sont installés automatiquement. En dehors de cet exercice, il est vivement conseillé d’utiliser un poste de travail qui n'est pas un contrôleur de domaine pour administrer ActiveDirectory.
+Depuis Powershell v3, l’import d’un module dans la session courante est automatique :
+Dans ce cas la commande implicite exécutée est <strong>Import-module</strong> ActiveDirectory lors du premier lancement de la commande ActiveDirectory.</p>
+</blockquote>
+<ul>
+<li>
+<p>Créer une unité d'organistation (OU) nommée <strong>Annuaire</strong> (avec Powershell)</p>
+</li>
+<li>
+<p>Créer un utilisateur lambda avec une adresse mail et une ville à l’aide de la commande <strong>New-Aduser</strong>, puis lui ajouter un mot de passe. (dans l’OU Annuaire crée précédemment)</p>
+</li>
+<li>
+<p>Créer un deuxième utilisateur avec mot de passe à l’aide d’une seule ligne de commande</p>
+</li>
+<li>
+<p>Lister tous les comptes dont le mot de passe n’a pas été changé depuis un mois. (dans le cadre de ce TP, une heure suffira étant donné la date de création des comptes)</p>
+</li>
+<li>
+<p>À l’aide la commande précédente, forcer le changement de passe des comptes concernés</p>
+</li>
+</ul>
+<h3 id="creation-dutilisateurs-depuis-un-fichier-de-type-csv">Création d'utilisateurs depuis un fichier de type CSV</h3>
+<ul>
+<li>À l’aide du fichier CSV fourni par le formateur, créez un grand nombre de comptes tel que :</li>
+<li>Login : prenom.nom (limité à 20 caractères) sans accent</li>
+<li>Mot de passe : nombre aléatoire de 8 caractères</li>
+<li>Email : <code>prenom.nom@votredomaine.xxx</code> (sans limitation de caractère)</li>
+<li>Forcer le changement de mot de passe à la première ouverture de session</li>
+<li>Créer l’utilisateur dans l’OU précédemment crée</li>
+</ul>
+<p>Fichier CSV : <a href="../serve/BaseDonneesExempleCsv.csv">Lien</a></p>
+<p>Fonction : <a href="../serve/Remove-Diacritics.ps1">Remove-Diacritics</a></p>
+<h3 id="creation-dutilisateurs-active-directory-depuis-une-base-de-donnees-mysql">Création d'utilisateurs Active Directory depuis une base de données MySQL</h3>
+<h4 id="prerequis-base-de-donnees-mariadb-mysql">Prérequis base de données MariaDB (Mysql)</h4>
+<ul>
+<li>Installer MariaDB sur votre machine :</li>
+<li><a href="https://assets.bden.fr/tpps/mariadb-10.3.7-winx64.msi">mariadb-10.3.7-winx64.msi</a></li>
+<li>
+<p>Choisir <strong>UTF8</strong> comme jeu de caractère</p>
+</li>
+<li>
+<p>Dans une console CMD.exe, se connecter au serveur MariaDB :</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>mysql -u root -p 
+</code></pre></div>
+
+<ul>
+<li>Créer la base de données à l'aide de la commande suivante : </li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>Créer la table rh_users :</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span><span class="w"> </span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">givenname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+</code></pre></div>
+
+<p>Charger le fichier CSV dans la table rh_users;</p>
+<div class="codehilite"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">LOCAL</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;C:/TP/CSV/BaseDonneesExempleCsv.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="p">,</span><span class="w"> </span><span class="n">givenname</span><span class="p">,</span><span class="n">city</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+
+<h4 id="creation-des-utilisateurs-depuis-mysql">Création des utilisateurs depuis Mysql</h4>
+<ul>
+<li>Supprimer tous les comptes Active Directory que vous avez créés précédemment.</li>
+</ul>
+<p>A l'aide des scripts fournis, créer tous les comptes présents dans la BDD MySQL dans l’AD tel que :</p>
+<ul>
+<li>Login (samaccountname) : prenom.nom (limité à 20 caractères) sans accent (fonction Remove-Diacritics fournie)</li>
+<li>Login (UPN) : <code>prenom.nom@votredomaine.xxx</code> (sans limitation de caractère)</li>
+<li>Mot de passe : nombre aléatoire de 8 caractères</li>
+<li>Email : <code>prenom.nom@votredomaine.xxx</code> (sans limitation de caractère)</li>
+<li>Forcer le changement de mot de passe à la première ouverture de session</li>
+<li>Créer l’utilisateur dans l’OU précédemment crée</li>
+<li>Créer les dossiers personnels des utilisateurs avec attribution des droits NTFS inhérents dans le dossier partagé : <code>\\srv-data\home\&lt;username&gt;</code>, voir script <strong>SetFolderPermission.ps1</strong> pour les droits NTFS</li>
+</ul>
+<p>Connecteur : <a href="./serve/mysql-connector-net-6.4.4.msi">.Net Mysl</a>
+Fonction : <a href="../serve/Get-Mysql.ps1">Get-Mysql</a> Script : <a href="../serve/SetFolderPermission.ps1">SetFolderPermission</a></p>
+<ul>
+<li>
+<p>Remplacer le serveur de fichier hébergeant les répertoires personnels par <code>\\srv-data2</code> pour tous les utilisateurs créés préalablement.</p>
+</li>
+<li>
+<p>À l'aide de la fonction <a href="../serve/Fill-PDF.ps1">Fill-PDF</a>, du fichier <a href="../serve/formulaire.pdf">Formulaire.pdf</a> et de la DLL <a href="./serve/itextsharp.dll">itextsharp.dll</a> générer un export pour chaque utilisateur de l'OU <strong>Annuaire</strong>.</p>
+</li>
+<li>
+<p>Simuler la transmission par mail de chaque export PDF vers l'utilisateur concerné. (Générer la commande "send-mailmessage" sous forme d'une chaine de caractère)</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Session2/" class="btn btn-neutral float-left" title="Session 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Session4/" class="btn btn-neutral float-right" title="Session 4">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Session2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Session4/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

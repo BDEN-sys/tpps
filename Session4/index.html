@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Baptiste DENEUVE" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Session 4 - TP Powershell CESI RISR</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Session 4";
+        var mkdocs_page_input_path = "Session4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TP Powershell CESI RISR
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Session 1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session2/">Session 2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session3/">Session 3</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Session 4</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#utilisation-de-wmi">Utilisation de WMI</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequis">Prérequis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wmicim-windows-management-instrumentation">WMI/CIM (Windows Management Instrumentation)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#envoi-de-message-et-html">Envoi de message et HTML</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Session5/">Session 5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TP Powershell CESI RISR</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Session 4</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="session-4">Session 4</h1>
+<h2 id="utilisation-de-wmi">Utilisation de WMI</h2>
+<h3 id="prerequis">Prérequis</h3>
+<ul>
+<li>
+<p>3 machines Windows virtuelles nommées Client1, Client2, Client3. Les VMs doivent pouvoir communiquer avec la machine hôte. (NIC Bridged ou host-only)</p>
+</li>
+<li>
+<p>Démarrer les machines virtuelles créées précédemment et configurer le mot de passe : <strong>P@ssword pour le compte administrateur – important pour la suite</strong></p>
+</li>
+<li>
+<p>Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :</p>
+</li>
+</ul>
+<p><code>netsh advfirewall firewall set rule group="Infrastructure de gestion Windows (WMI)" new enable=yes</code></p>
+<h3 id="wmicim-windows-management-instrumentation">WMI/CIM (Windows Management Instrumentation)</h3>
+<ul>
+<li>Sur l’hôte hébergeant les VMs, lancer une console powershell, puis la commande suivante :</li>
+</ul>
+<p><code>Get-WmiObject win32_bios -ComputerName client1 -Credential administrateur</code></p>
+<ul>
+<li>
+<p>À l’aide de la commande précédente, créer un script qui va interroger toutes les VMs à l’aide d’une boucle.</p>
+</li>
+<li>
+<p>Adapter votre script pour détecter le système d’exploitation</p>
+</li>
+<li>
+<p>Adapter le script pour afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).</p>
+</li>
+<li>
+<p>À l’aide de la classe WMI <strong>win32_LogicalDisk</strong>, afficher la taille et l’espace libre des partitions de votre hôte.</p>
+</li>
+<li>
+<p>Affiner la sortie de la commande précédente pour afficher en tableau les colonnes suivantes : Name,  Espace Libre (en GB) et taille (en GB). Garder ce script pour la prochaine partie.</p>
+</li>
+</ul>
+<p><code>Conseil : utiliser la syntaxe :</code>
+   <code>@{label = &lt;string&gt; ; expression = {&lt;script&gt;}}</code></p>
+<h2 id="envoi-de-message-et-html">Envoi de message et HTML</h2>
+<ul>
+<li>
+<p>À l’aide de la commande **Send-Mailmessage, envoyez-vous un mail de test (adaptez les paramètres de la commande en fonction de votre fournisseur de messagerie : SSL ?, Port 25 ou 587…)</p>
+</li>
+<li>
+<p>À l’aide du script de la dernière partie (concernant Win32_LogicalDisk), envoyer la liste des partitions de vos 3 VMs à votre adresse mail.</p>
+</li>
+<li>
+<p>Répétez l’opération précédente en convertissant le retour du script en HTML.</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Session3/" class="btn btn-neutral float-left" title="Session 3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Session5/" class="btn btn-neutral float-right" title="Session 5">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Session3/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Session5/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

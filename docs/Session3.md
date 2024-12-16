@@ -134,7 +134,7 @@ Fonction : [Remove-Diacritics](./serve/Remove-Diacritics.ps1)
 mysql -u root -p 
 ```
 
-* Créer la base de données à l'aide de la commande suivante : 
+* Créer la base de données à l'aide de la commande suivante :
 
 ```sql
 CREATE DATABASE RH;
@@ -167,11 +167,11 @@ A l'aide des scripts fournis, créer tous les comptes présents dans la BDD MySQ
 * Créer l’utilisateur dans l’OU précédemment crée
 * Créer les dossiers personnels des utilisateurs avec attribution des droits NTFS inhérents dans le dossier partagé : ```\\srv-data\home\<username>```, voir script **SetFolderPermission.ps1** pour les droits NTFS
 
-Connecteur : [.Net Mysl](./serve/mysql-connector-net-6.4.4.msi)
+Connecteur : [.Net Mysl](https://assets.bden.fr/tpps/mysql-connector-net-6.4.4.msi)
 Fonction : [Get-Mysql](./serve/Get-Mysql.ps1) Script : [SetFolderPermission](./serve/SetFolderPermission.ps1)
 
 * Remplacer le serveur de fichier hébergeant les répertoires personnels par ```\\srv-data2``` pour tous les utilisateurs créés préalablement.
 
-* À l'aide de la fonction [Fill-PDF](./serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](./serve/formulaire.pdf) et de la DLL [itextsharp.dll](./serve/itextsharp.dll ) générer un export pour chaque utilisateur de l'OU **Annuaire**.
+* À l'aide de la fonction [Fill-PDF](./serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](./serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://assets.bden.fr/tpps/itextsharp.dll ) générer un export pour chaque utilisateur de l'OU **Annuaire**.
 
 * Simuler la transmission par mail de chaque export PDF vers l'utilisateur concerné. (Générer la commande "send-mailmessage" sous forme d'une chaine de caractère)

@@ -49,7 +49,7 @@
   * Ajouter le suffixe **@cesi.fr**
   * Extraire le prénom et le nom de la chaine
 
-* Transformer le retour de la commande ```netstat.exe``` en objet
+<!--* Transformer le retour de la commande ```netstat.exe``` en objet -->
 
 ## Conditions
 

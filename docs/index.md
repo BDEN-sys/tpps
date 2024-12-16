@@ -22,7 +22,7 @@ Get-Command | Foreach {Get-Help $_ -detailed |Out-File -FilePath C:\temp\$_.txt 
 
 * Lister tous les fichiers du répertoire C:\Windows\system32 et ses sous-répertoires dont la taille est supérieure ou égale à 10 Mo
 
-* Copier l’arborescence (récursif) de ‘program files’ vers un répertoire de votre choix.
+* Copier seulement les sous-répertoires de l’arborescence (récursif) du répertoire 'program files' vers un répertoire de votre choix.
 
 ## Gestion système
 
@@ -32,4 +32,4 @@ Get-Command | Foreach {Get-Help $_ -detailed |Out-File -FilePath C:\temp\$_.txt 
 
 * Récupérer les processus utilisant au moins 100 Mo.
 
-* Récupérer dans le journal d’événements ‘Application’ , toutes les entrées en erreur.
+* Récupérer dans le journal d’événements 'Application' , toutes les entrées en erreur.

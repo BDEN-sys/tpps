@@ -519,57 +519,48 @@
 <h2 id="gestion-active-directory-avec-powershell">Gestion Active Directory avec Powershell</h2>
 <h3 id="parametrage-du-serveur">Paramétrage du serveur</h3>
 <p>Nommer la machine virtuelle à l’aide de la commande Powershell suivante :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Rename-Computer</span> <span class="n">-NewName</span> <span class="n">DC1</span> <span class="n">-force</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">Rename-Computer</span> <span class="n">-NewName</span> <span class="n">DC1</span> <span class="n">-force</span>
 </code></pre></div>
-
 <p>Configurer la carte réseau comme indiqué ci-dessous avec Powershell :</p>
 <p>Trouver l’id de la carte réseau local à l’aide de Powershell :</p>
 <p><strong>Réponse (commande utilisée et id de la carte) :</strong></p>
 <p>Pour configurer l’adresse IPv4, la passerelle et le masque de sous réseau :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> 
-<span class="nb">New-NetIPAddress</span> <span class="n">-IPAddress</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-DefaultGateway</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">1</span> <span class="n">-PrefixLength</span> <span class="n">24</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">New-NetIPAddress</span> <span class="n">-IPAddress</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-DefaultGateway</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">1</span> <span class="n">-PrefixLength</span> <span class="n">24</span>
 </code></pre></div>
-
 <p>Que signifie le paramètre PrefixLength dans la commande précédente ?</p>
 <p><strong>Réponse :</strong></p>
 <p>Vérifier la prise en compte de la configuration :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Get-NetIPConfiguration</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Get-NetIPConfiguration</span>
 </code></pre></div>
-
 <p>Tester la connexion avec le routeur :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Test-Connection</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-count</span> <span class="n">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">Test-Connection</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span> <span class="n">-count</span> <span class="n">1</span>
 </code></pre></div>
-
 <p>À quelle commande historique correspond la commande ci-dessous ?</p>
 <p><strong>Réponse :</strong></p>
 <p>Configurer le client DNS</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Set-DnsClientServerAddress</span> <span class="n">-ServerAddresses</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Get-NetAdapter</span> <span class="n">-InterfaceIndex</span> <span class="p">&lt;</span><span class="n">id_carte_réseau</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Set-DnsClientServerAddress</span> <span class="n">-ServerAddresses</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">10</span><span class="p">.</span><span class="n">12</span>
 </code></pre></div>
-
 <h3 id="installation-du-service-dannuaire-active-directory">Installation du service d’annuaire Active Directory</h3>
 <p>Créer le domaine <code>cesi&lt;id&gt;.lan</code> à l’aide de Powershell :</p>
 <p>Installation des outils de management et déploiement Active Directory :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Install-WindowsFeature</span> <span class="n">AD-Domain-Services</span><span class="p">,</span><span class="n">RSAT-ADDS-Tools</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">Install-WindowsFeature</span> <span class="n">AD-Domain-Services</span><span class="p">,</span><span class="n">RSAT-ADDS-Tools</span>
 </code></pre></div>
-
 <p>Comment vérifier les rôles et fonctionnalités installés à l’aide de la console Powershell :</p>
 <p><strong>Réponse :</strong></p>
 <p>Redémarrer le serveur :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Restart-Computer</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Restart-Computer</span>
 </code></pre></div>
-
 <p>Pour installer Active Directory, lancer la commande Powershell suivante :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Import-Module</span> <span class="n">ADDSDeployment</span> 
-<span class="nb">Install-ADDSForest</span> <span class="n">-CreateDnsDelegation</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-DatabasePath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-DomainMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="p">`</span>
-   <span class="n">-DomainName</span> <span class="s2">&quot;cesi.lan&quot;</span> <span class="n">-DomainNetbiosName</span> <span class="s2">&quot;CESI&quot;</span> <span class="n">-ForestMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="n">-InstallDns</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
-   <span class="n">-LogPath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-NoRebootOnCompletion</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-SysvolPath</span> <span class="s2">&quot;C:\Windows\SYSVOL&quot;</span> <span class="n">-Force</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
-   <span class="n">-SafeModeAdministratorPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">&quot;P@ssword&quot;</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">Import-Module</span> <span class="n">ADDSDeployment</span> 
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">Install-ADDSForest</span> <span class="n">-CreateDnsDelegation</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-DatabasePath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-DomainMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="p">`</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>   <span class="n">-DomainName</span> <span class="s2">&quot;cesi.lan&quot;</span> <span class="n">-DomainNetbiosName</span> <span class="s2">&quot;CESI&quot;</span> <span class="n">-ForestMode</span> <span class="s2">&quot;Win2012&quot;</span> <span class="n">-InstallDns</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>   <span class="n">-LogPath</span> <span class="s2">&quot;C:\Windows\NTDS&quot;</span> <span class="n">-NoRebootOnCompletion</span><span class="p">:</span><span class="nv">$false</span> <span class="n">-SysvolPath</span> <span class="s2">&quot;C:\Windows\SYSVOL&quot;</span> <span class="n">-Force</span><span class="p">:</span><span class="nv">$true</span> <span class="p">`</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   <span class="n">-SafeModeAdministratorPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">&quot;P@ssword&quot;</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Redémarrer le serveur :</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">Restart-Computer</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">Restart-Computer</span>
 </code></pre></div>
-
 <h3 id="verification-de-linstallation-dactive-directory">Vérification de l’installation d’Active Directory</h3>
 <p>Rester la configuration d’Active Directory avec la commande DCDIAG.exe</p>
 <p>Tester la résolution de nom directe et inverse du nom FQDN de votre DC :</p>
@@ -619,26 +610,22 @@ Dans ce cas la commande implicite exécutée est <strong>Import-module</strong> 
 <p>Dans une console CMD.exe, se connecter au serveur MariaDB :</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code>mysql -u root -p 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mysql -u root -p 
 </code></pre></div>
-
 <ul>
 <li>Créer la base de données à l'aide de la commande suivante :</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span>
 </code></pre></div>
-
 <ul>
 <li>Créer la table rh_users :</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span><span class="w"> </span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">givenname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">USE</span><span class="w"> </span><span class="n">RH</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">givenname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
 </code></pre></div>
-
 <p>Charger le fichier CSV dans la table rh_users;</p>
-<div class="codehilite"><pre><span></span><code><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">LOCAL</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;C:/TP/CSV/BaseDonneesExempleCsv.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="p">,</span><span class="w"> </span><span class="n">givenname</span><span class="p">,</span><span class="n">city</span><span class="p">);</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">LOCAL</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;C:/TP/CSV/BaseDonneesExempleCsv.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rh_users</span><span class="w"> </span><span class="n">FIELDS</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="n">TERMINATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">LINES</span><span class="w"> </span><span class="p">(</span><span class="n">surname</span><span class="p">,</span><span class="w"> </span><span class="n">givenname</span><span class="p">,</span><span class="n">city</span><span class="p">);</span><span class="w"> </span>
 </code></pre></div>
-
 <h4 id="creation-des-utilisateurs-depuis-mysql">Création des utilisateurs depuis Mysql</h4>
 <ul>
 <li>Supprimer tous les comptes Active Directory que vous avez créés précédemment.</li>

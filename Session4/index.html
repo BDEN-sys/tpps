@@ -444,9 +444,9 @@
 <ul>
 <li>Depuis le DC, lancer une console powershell, puis les commandes suivantes :</li>
 </ul>
-<p><code>powershell
-   $CimSession = New-CimSession -ComputerName Client1 -Credential (Get-Credential)
-   Get-CimInstance -CimSession $CimSession -ClassName Win32_Bios</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$CimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="n">-ComputerName</span> <span class="n">Client1</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">Get-CimInstance</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span> <span class="n">-ClassName</span> <span class="n">Win32_Bios</span>
+</code></pre></div>
 <ul>
 <li>
 <p>Adapter la commande précédente, pour interroger toutes les deux VMs (Client1 et 2)</p>

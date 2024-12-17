@@ -14,8 +14,10 @@
 
 * Que fait ce script :
 
-```PS
-Get-Command | Foreach {Get-Help $_ -detailed |Out-File -FilePath C:\temp\$_.txt –Encoding ASCII}
+```powershell
+Get-Command | Foreach { 
+    Get-Help $_ -detailed |Out-File -FilePath C:\temp\$_.txt –Encoding ASCII
+}
 ```
 
 ## Système de fichiers

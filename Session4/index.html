@@ -297,13 +297,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#utilisation-de-wmi" class="md-nav__link">
+  <a href="#utilisation-de-wmicim" class="md-nav__link">
     <span class="md-ellipsis">
-      Utilisation de WMI
+      Utilisation de WMI/CIM
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Utilisation de WMI">
+    <nav class="md-nav" aria-label="Utilisation de WMI/CIM">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -373,13 +373,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#utilisation-de-wmi" class="md-nav__link">
+  <a href="#utilisation-de-wmicim" class="md-nav__link">
     <span class="md-ellipsis">
-      Utilisation de WMI
+      Utilisation de WMI/CIM
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Utilisation de WMI">
+    <nav class="md-nav" aria-label="Utilisation de WMI/CIM">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -430,28 +430,26 @@
 
 
 <h1 id="session-4">Session 4</h1>
-<h2 id="utilisation-de-wmi">Utilisation de WMI</h2>
+<h2 id="utilisation-de-wmicim">Utilisation de WMI/CIM</h2>
 <h3 id="prerequis">Prérequis</h3>
 <ul>
-<li>
-<p>3 machines Windows virtuelles nommées Client1, Client2, Client3. Les VMs doivent pouvoir communiquer avec la machine hôte. (NIC Bridged ou host-only)</p>
-</li>
-<li>
-<p>Démarrer les machines virtuelles créées précédemment et configurer le mot de passe : <strong>P@ssword pour le compte administrateur – important pour la suite</strong></p>
-</li>
-<li>
-<p>Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :</p>
-</li>
+<li>2 machines Windows virtuelles nommées Client1, Client2 jointes au domaine CESI.LAN</li>
 </ul>
-<p><code>netsh advfirewall firewall set rule group="Infrastructure de gestion Windows (WMI)" new enable=yes</code></p>
+<!--
+* Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :
+
+   ```netsh advfirewall firewall set rule group="Infrastructure de gestion Windows (WMI)" new enable=yes```
+-->
 <h3 id="wmicim-windows-management-instrumentation">WMI/CIM (Windows Management Instrumentation)</h3>
 <ul>
-<li>Sur l’hôte hébergeant les VMs, lancer une console powershell, puis la commande suivante :</li>
+<li>Depuis le DC, lancer une console powershell, puis les commandes suivantes :</li>
 </ul>
-<p><code>Get-WmiObject win32_bios -ComputerName client1 -Credential administrateur</code></p>
+<p><code>powershell
+   $CimSession = New-CimSession -ComputerName Client1 -Credential (Get-Credential)
+   Get-CimInstance -CimSession $CimSession -ClassName Win32_Bios</code></p>
 <ul>
 <li>
-<p>À l’aide de la commande précédente, créer un script qui va interroger toutes les VMs à l’aide d’une boucle.</p>
+<p>Adapter la commande précédente, pour interroger toutes les deux VMs (Client1 et 2)</p>
 </li>
 <li>
 <p>Adapter votre script pour détecter le système d’exploitation</p>
@@ -460,10 +458,10 @@
 <p>Adapter le script pour afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).</p>
 </li>
 <li>
-<p>À l’aide de la classe WMI <strong>win32_LogicalDisk</strong>, afficher la taille et l’espace libre des partitions de votre hôte.</p>
+<p>À l’aide de la classe WMI <strong>win32_LogicalDisk</strong>, afficher la taille et l’espace libre des partitions.</p>
 </li>
 <li>
-<p>Affiner la sortie de la commande précédente pour afficher en tableau les colonnes suivantes : Name,  Espace Libre (en GB) et taille (en GB). Garder ce script pour la prochaine partie.</p>
+<p>Affiner la sortie de la commande précédente pour afficher en tableau les colonnes suivantes : Name, Espace Libre (en GB) et taille (en GB). Garder ce script pour la prochaine partie.</p>
 </li>
 </ul>
 <p><code>Conseil : utiliser la syntaxe :</code>
@@ -471,7 +469,7 @@
 <h2 id="envoi-de-message-et-html">Envoi de message et HTML</h2>
 <ul>
 <li>
-<p>À l’aide de la commande **Send-Mailmessage, envoyez-vous un mail de test (adaptez les paramètres de la commande en fonction de votre fournisseur de messagerie : SSL ?, Port 25 ou 587…)</p>
+<p>À l’aide de la commande <strong>Send-Mailmessage</strong>, envoyez-vous un mail de test (adaptez les paramètres de la commande en fonction de votre fournisseur de messagerie : SSL ?, Port 25 ou 587…)</p>
 </li>
 <li>
 <p>À l’aide du script de la dernière partie (concernant Win32_LogicalDisk), envoyer la liste des partitions de vos 3 VMs à votre adresse mail.</p>
@@ -500,7 +498,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 15, 2024 15:04:25</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 17, 2024 22:42:22</span>
   </span>
 
     

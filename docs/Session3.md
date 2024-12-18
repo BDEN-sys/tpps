@@ -112,6 +112,7 @@ Dans ce cas la commande implicite exécutée est **Import-module** ActiveDirecto
 * À l’aide du fichier CSV fourni par le formateur, créez un grand nombre de comptes tel que :
   * Login : prenom.nom (limité à 20 caractères) sans accent
   * Mot de passe : nombre aléatoire de 8 caractères
+    * Bonus : utilisation d'une fonction dédiée : [Generate-Password.ps1](https://tpps.bden.fr/serve/Generate-Password.ps1)
   * Email : `prenom.nom@votredomaine.xxx` (sans limitation de caractère)
   * Forcer le changement de mot de passe à la première ouverture de session
   * Créer l’utilisateur dans l’OU précédemment crée

@@ -24,7 +24,7 @@ Param(
         $pwd = "$pwd" + $alphabetMIN[(Get-Random -Maximum  ([array]$alphabetMIN).count)]
 
     }  
-    $pwd 
+    
     $pwd_array = ($special_char + $maj_char + $pwd).ToCharArray()
     $pwd = $null
     0..($pwd_array.count -1) | ForEach-Object {

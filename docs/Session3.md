@@ -177,3 +177,30 @@ Fonction : [Get-Mysql](./serve/Get-Mysql.ps1) Script : [SetFolderPermission](./s
 * À l'aide de la fonction [Fill-PDF](./serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](./serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://assets.bden.fr/tpps/itextsharp.dll ) générer un export pour chaque utilisateur de l'OU **Annuaire**.
 
 * Simuler la transmission par mail de chaque export PDF vers l'utilisateur concerné. (Générer la commande "send-mailmessage" sous forme d'une chaine de caractère)
+
+#### Création des utilisateurs via CSV et GUI
+
+* Supprimer tous les comptes Active Directory que vous avez créés précédemment.
+
+* Télécharger le script suivant [GUI-AD.ps1](./serve/GUI-AD.ps1)
+
+* Lancer le script suivant GUI-AD.ps1 - En principe une fenêtre vide doit s'afficher.
+
+* Décommenter la partie "Bouton de sélection  d'un fichier CSV" et relancer le script. Observez l'ajout d'un bouton concernant l'import CSV.
+
+* Décommenter la partie "Contenu du fichier CSV" et relancer le script. Cette fois une zone de contenu vide apparait.
+
+* Décommenter la partie "Bouton pour créer les utilisateurs" et relancer le script. Observez l'ajout d'un bouton concernant la création des utilisateurs.
+
+* Décommenter la partie "Action pour sélectionner un fichier" et relancer le script. Sélectionner le fichier CSV 'BaseDonneesExempleCsv.csv' et vérifier le résultat dans la zone de contenu.
+
+* Décommenter la partie "Action pour créer les utilisateurs" et relancer le script. Effectuez les opération suivantes :
+  * Adapteur cette partie pour affichier le nom, le prénom et la ville dans le shell lors d'un clic que le bouton "Créer les utilisateurs"
+  * Reprendre le script de la partie CSV et l'ajouter dans la partie action. Dans un premier temps afficher seulement la commande en mode texte dans le shell : `"New-Aduser -samaccountname $login -name $name ..."`
+  * Si les commandes New-Aduser semblent correctes, adapter cette partie du script pour créer les comptes.
+
+* Adapter le script pour créer une OU depuis l'interface graphique.
+
+* Adapter le script pour créer un groupe depuis l'interface graphique.
+
+* Adapter le script pour vérifier si les comptes existent avant création. 

@@ -481,7 +481,21 @@
 <h2 id="utilisation-de-wmicim">Utilisation de WMI/CIM</h2>
 <h3 id="prerequis">Prérequis</h3>
 <ul>
-<li>2 machines Windows virtuelles nommées Client1, Client2 jointes au domaine CESI.LAN</li>
+<li>
+<p>2 machines Windows virtuelles nommées Client1, Client2 (Windows 10 ou 11)</p>
+</li>
+<li>
+<p>Configurer les deux VMs Client 1 &amp; 2 sur le switch virtuel de la VM DC1</p>
+</li>
+<li>
+<p>Configurer les IPs 192.168.10.21/24 et 192.168.10.22/24 sur les VMs client1 et client2 respectivement.</p>
+</li>
+<li>
+<p>Intégrer les VMs client1 et client2 au domaine CESI.LAN</p>
+</li>
+<li>
+<p>Sur le VMs client1 et client2, lancer la commande suivante dans une console Powershell : <code>Enable-PSRemoting</code></p>
+</li>
 </ul>
 <!--
 * Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :
@@ -490,20 +504,31 @@
 -->
 <h3 id="wmicim-windows-management-instrumentation">WMI/CIM (Windows Management Instrumentation)</h3>
 <ul>
-<li>Depuis le DC, lancer une console powershell, puis les commandes suivantes :</li>
+<li>
+<p>Depuis le DC, lancer une console powershell</p>
+<ul>
+<li>Tester la connectivité WSMAN avec la commande suivante :</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$CimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="n">-ComputerName</span> <span class="n">Client1</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">Get-CimInstance</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span> <span class="n">-ClassName</span> <span class="n">Win32_Bios</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">Test-WSMan</span> <span class="n">client1</span> <span class="c">#Puis client2</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c">#Si la connection WSMan fonctionne, le lignes suivantes seront affichées</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">wsmid</span>           <span class="p">:</span> <span class="n">http</span><span class="p">://</span><span class="n">schemas</span><span class="p">.</span><span class="n">dmtf</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">wbem</span><span class="p">/</span><span class="n">wsman</span><span class="p">/</span><span class="n">identity</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">wsmanidentity</span><span class="p">.</span><span class="n">xsd</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">ProtocolVersion</span> <span class="p">:</span> <span class="n">http</span><span class="p">://</span><span class="n">schemas</span><span class="p">.</span><span class="n">dmtf</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">wbem</span><span class="p">/</span><span class="n">wsman</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">wsman</span><span class="p">.</span><span class="n">xsd</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">ProductVendor</span>   <span class="p">:</span> <span class="n">Microsoft</span> <span class="n">Corporation</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">ProductVersion</span>  <span class="p">:</span> <span class="n">OS</span><span class="p">:</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">SP</span><span class="p">:</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">Stack</span><span class="p">:</span> <span class="n">3</span><span class="p">.</span><span class="n">0</span>
 </code></pre></div>
 <ul>
-<li>
-<p>Adapter la commande précédente, pour interroger toutes les deux VMs (Client1 et 2)</p>
-</li>
-<li>
-<p>Adapter votre script pour détecter le système d’exploitation</p>
-</li>
-<li>
-<p>Adapter le script pour afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).</p>
+<li>Obtenir les information de BIOS</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">$CimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="n">-ComputerName</span> <span class="n">Client1</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">Get-CimInstance</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span> <span class="n">-ClassName</span> <span class="n">Win32_Bios</span>
+</code></pre></div>
+* Adapter la commande précédente pour :</p>
+<ul>
+<li>pour interroger toutes les deux VMs (Client1 et 2)</li>
+<li>détecter le système d’exploitation</li>
+<li>afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).</li>
+</ul>
 </li>
 <li>
 <p>À l’aide de la classe WMI <strong>win32_LogicalDisk</strong>, afficher la taille et l’espace libre des partitions.</p>
@@ -557,7 +582,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 18, 2024 21:07:35</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 18, 2024 22:14:21</span>
   </span>
 
     

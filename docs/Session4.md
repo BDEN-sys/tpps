@@ -44,7 +44,7 @@
 
 ### Module MailKit
 
-L'usage de la commande **Send-Mailmessage** est déprécié, dans les futures version de Powershell, celle-çi ne sera plus pris en charge. En 2024, il n'y pas de commande native de remplacement. Microsoft recommande l'usage du Mailkit ```https://github.com/jstedfast/MailKit```
+L'usage de la commande **Send-Mailmessage** est déprécié, dans les futures versions de Powershell, celle-ci ne sera plus prise en charge. En 2024, il n'y pas de commande native de remplacement. Microsoft recommande l'usage du Mailkit ```https://github.com/jstedfast/MailKit```
 
 * Installer Mailkit sur le serveur DC1 à l'aide la commande ```Install-Module -Name "Send-MailKitMessage" -Scope AllUsers```
 

@@ -194,13 +194,13 @@ Fonction : [Get-Mysql](./serve/Get-Mysql.ps1) Script : [SetFolderPermission](./s
 
 * Décommenter la partie "Action pour sélectionner un fichier" et relancer le script. Sélectionner le fichier CSV 'BaseDonneesExempleCsv.csv' et vérifier le résultat dans la zone de contenu.
 
-* Décommenter la partie "Action pour créer les utilisateurs" et relancer le script. Effectuez les opération suivantes :
-  * Adapteur cette partie pour affichier le nom, le prénom et la ville dans le shell lors d'un clic que le bouton "Créer les utilisateurs"
-  * Reprendre le script de la partie CSV et l'ajouter dans la partie action. Dans un premier temps afficher seulement la commande en mode texte dans le shell : `"New-Aduser -samaccountname $login -name $name ..."`
+* Décommenter la partie "Action pour créer les utilisateurs" et relancer le script. Effectuez les opérations suivantes :
+  * Adapter cette partie pour afficher le nom, le prénom et la ville dans le shell lors d'un clic sur le bouton "Créer les utilisateurs".
+  * Reprendre le script de la partie CSV et l'ajouter dans la partie action. Dans un premier temps, afficher seulement la commande en mode texte dans le shell : `"New-Aduser -samaccountname $login -name $name ..."`
   * Si les commandes New-Aduser semblent correctes, adapter cette partie du script pour créer les comptes.
 
 * Adapter le script pour créer une OU depuis l'interface graphique.
 
 * Adapter le script pour créer un groupe depuis l'interface graphique.
 
-* Adapter le script pour vérifier si les comptes existent avant création. 
+* Adapter le script pour vérifier si les comptes existent avant création.

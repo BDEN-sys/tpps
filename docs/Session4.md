@@ -4,7 +4,16 @@
 
 ### Prérequis
 
-* 2 machines Windows virtuelles nommées Client1, Client2 jointes au domaine CESI.LAN
+* 2 machines Windows virtuelles nommées Client1, Client2 (Windows 10 ou 11)
+
+* Configurer les deux VMs Client 1 & 2 sur le switch virtuel de la VM DC1
+
+* Configurer les IPs 192.168.10.21/24 et 192.168.10.22/24 sur les VMs client1 et client2 respectivement.
+
+* Intégrer les VMs client1 et client2 au domaine CESI.LAN
+
+* Sur le VMs client1 et client2, lancer la commande suivante dans une console Powershell : ```Enable-PSRemoting```
+
 <!--
 * Sur chaque VM, lancer la commande suivante pour autoriser WMI et DCOM distant :
 
@@ -12,18 +21,31 @@
 -->
 ### WMI/CIM (Windows Management Instrumentation)
 
-* Depuis le DC, lancer une console powershell, puis les commandes suivantes :
+* Depuis le DC, lancer une console powershell
+    * Tester la connectivité WSMAN avec la commande suivante :
 
-   ```powershell
-   $CimSession = New-CimSession -ComputerName Client1 -Credential (Get-Credential)
-   Get-CimInstance -CimSession $CimSession -ClassName Win32_Bios
-   ```
+      ```powershell
+      Test-WSMan client1 #Puis client2
 
-* Adapter la commande précédente, pour interroger toutes les deux VMs (Client1 et 2)
+      #Si la connection WSMan fonctionne, le lignes suivantes seront affichées
+      wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+      ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+      ProductVendor   : Microsoft Corporation
+      ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 3.0
+      ```
 
-* Adapter votre script pour détecter le système d’exploitation
+    * Obtenir les information de BIOS
 
-* Adapter le script pour afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).
+      ```powershell
+      $CimSession = New-CimSession -ComputerName Client1 -Credential (Get-Credential)
+      Get-CimInstance -CimSession $CimSession -ClassName Win32_Bios
+      ```
+      
+* Adapter la commande précédente pour :
+
+    * interroger toutes les deux VMs (Client1 et 2)
+    * détecter le système d’exploitation
+    * afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).
 
 * À l’aide de la classe WMI **win32_LogicalDisk**, afficher la taille et l’espace libre des partitions.
 
@@ -48,4 +70,4 @@ L'usage de la commande **Send-Mailmessage** est déprécié, dans les futures ve
 
 * Installer Mailkit sur le serveur DC1 à l'aide la commande ```Install-Module -Name "Send-MailKitMessage" -Scope AllUsers```
 
-* Modifier le script [Test-MailKit.ps1](./serve/Test-MailKit.ps1) pour envoyer un mail.
+* Modifier le script [Test-MailKit.ps1](./serve/Test-MailKit.ps1) pour envoyer un mail

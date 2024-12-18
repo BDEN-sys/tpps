@@ -336,6 +336,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Envoi de message et HTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#send-mailmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Send-Mailmessage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-mailkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module MailKit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -412,6 +436,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Envoi de message et HTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#send-mailmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Send-Mailmessage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-mailkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module MailKit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -467,15 +515,26 @@
 <p><code>Conseil : utiliser la syntaxe :</code>
    <code>@{label = &lt;string&gt; ; expression = {&lt;script&gt;}}</code></p>
 <h2 id="envoi-de-message-et-html">Envoi de message et HTML</h2>
+<h3 id="send-mailmessage">Send-Mailmessage</h3>
 <ul>
 <li>
 <p>À l’aide de la commande <strong>Send-Mailmessage</strong>, envoyez-vous un mail de test (adaptez les paramètres de la commande en fonction de votre fournisseur de messagerie : SSL ?, Port 25 ou 587…)</p>
 </li>
 <li>
-<p>À l’aide du script de la dernière partie (concernant Win32_LogicalDisk), envoyer la liste des partitions de vos 3 VMs à votre adresse mail.</p>
+<p>À l’aide du script de la dernière partie (concernant Win32_LogicalDisk), envoyer la liste des partitions de vos 2 VMs à votre adresse mail.</p>
 </li>
 <li>
 <p>Répétez l’opération précédente en convertissant le retour du script en HTML.</p>
+</li>
+</ul>
+<h3 id="module-mailkit">Module MailKit</h3>
+<p>L'usage de la commande <strong>Send-Mailmessage</strong> est déprécié, dans les futures versions de Powershell, celle-ci ne sera plus prise en charge. En 2024, il n'y pas de commande native de remplacement. Microsoft recommande l'usage du Mailkit <code>https://github.com/jstedfast/MailKit</code></p>
+<ul>
+<li>
+<p>Installer Mailkit sur le serveur DC1 à l'aide la commande <code>Install-Module -Name "Send-MailKitMessage" -Scope AllUsers</code></p>
+</li>
+<li>
+<p>Modifier le script <a href="../serve/Test-MailKit.ps1">Test-MailKit.ps1</a> pour envoyer un mail.</p>
 </li>
 </ul>
 
@@ -498,7 +557,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 17, 2024 22:42:22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 18, 2024 21:07:35</span>
   </span>
 
     

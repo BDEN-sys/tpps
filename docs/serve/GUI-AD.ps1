@@ -50,7 +50,7 @@ $btnSelectFile.Add_Click({
 
     if ($openFileDialog.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
         try {
-            $csvData = Import-Csv -Path $openFileDialog.FileName -Delimiter ';' -Encoding UTF8
+            $global:csvData = Import-Csv -Path $openFileDialog.FileName -Delimiter ';' -Encoding UTF8
             $dataGrid.DataSource = [System.Collections.ArrayList]$csvData
         } catch {
             Show-Error "Erreur lors du chargement du fichier CSV : $_"

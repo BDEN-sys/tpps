@@ -43,7 +43,7 @@
       
 * Adapter la commande précédente pour :
 
-    * interroger toutes les deux VMs (Client1 et 2)
+    * interroger les deux VMs (Client1 et 2)
     * détecter le système d’exploitation
     * afficher, le nom de la machine, le nom du système d’exploitation, sa version et son architecture (x64 ou x86).
 

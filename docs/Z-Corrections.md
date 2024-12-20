@@ -11,3 +11,5 @@
 * [CorrectionTP_AD_Mysql.ps1](./serve/CorrectionTP_AD_Mysql.ps1)
 
 * [CorrectionTP_AD_CSV_GUI.ps1](./serve/CorrectionTP_AD_CSV_GUI.ps1)
+
+* [CorrectionTP_WMI_CIM_MAIL.ps1](./serve/CorrectionTP_WMI_CIM_MAIL.ps1)

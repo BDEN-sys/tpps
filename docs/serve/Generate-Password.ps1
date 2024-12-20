@@ -26,6 +26,7 @@ Param(
     }  
     
     $pwd_array = ($special_char + $maj_char + $pwd).ToCharArray()
+    -join  $pwd_array
     $pwd = $null
     0..($pwd_array.count -1) | ForEach-Object {
         $pwd = "$pwd" + $pwd_array[(Get-Random -Maximum  ([array]$pwd_array).count)]

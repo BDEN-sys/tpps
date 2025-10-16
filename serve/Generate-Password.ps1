@@ -1,5 +1,11 @@
 $symbols = '!@#$%^&*'.ToCharArray()
-$characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + $symbols
+#Non compatible Powershell 5
+#$characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + $symbols
+$minAZ =  [char[]](97..122) 
+$majAZ =  [char[]](65..90) 
+$characterList = $minAZ + $majAZ + '0'..'9' + $symbols
+
+
 function GeneratePassword {
     param(
         [Parameter(Mandatory = $false)]
@@ -12,7 +18,9 @@ function GeneratePassword {
     do {
         $password = ""
         for ($i = 0; $i -lt $length; $i++) {
-            $randomIndex = [System.Security.Cryptography.RandomNumberGenerator]::GetInt32(0, $characterList.Length)
+            $randomIndex = Get-Random -Minimum 0 -Maximum $characterList.Length
+            #Non compatible PS7
+            #$randomIndex = [System.Security.Cryptography.RandomNumberGenerator]::GetInt32(0, $characterList.Length)
             $password += $characterList[$randomIndex]
         }
 

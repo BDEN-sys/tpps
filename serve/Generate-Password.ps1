@@ -1,38 +1,31 @@
-function Get-Password {
-Param(
-[Parameter(Mandatory=$false,  Position=3)][AllowEmptyString()]
-[Int]$length)
-
-    $length = 12
-    # Liste des caracteres
-    $lstCarSpecial = @("`#", "`@", "?", "_", "`%", "!", "/", "+")
-    $alphabetMAJ = [char[]]([int][char]'A'..[int][char]'Z')
-    $alphabetMIN = [char[]]([int][char]'a'..[int][char]'z')
-
-    #Choix du caracteres special
-    $special_char = $lstCarSpecial[(Get-Random -Maximum  ([array]$LstCarSpecial).count)]
-
-    #Choix majuscule
-    $maj_char = $alphabetMAJ[(Get-Random -Maximum  ([array]$alphabetMAJ).count)]
-
-    # Longueur max du mot de passe
-    $max=10
-    if ($length) {$max = $length}      
-    [string]$pwd = $null
-    1..($max-2) | ForEach-Object {
-         #Choix majuscule
-        $pwd = "$pwd" + $alphabetMIN[(Get-Random -Maximum  ([array]$alphabetMIN).count)]
-
-    }  
+$symbols = '!@#$%^&*'.ToCharArray()
+$characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + $symbols
+function GeneratePassword {
+    param(
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(12, 256)]
+        [int] 
+        $length = 14,
+        [Parameter(Mandatory = $false)][switch]$AsSecureString
+    )
     
-    $pwd_array = ($special_char + $maj_char + $pwd).ToCharArray()
-    -join  $pwd_array
-    $pwd = $null
-    0..($pwd_array.count -1) | ForEach-Object {
-        $pwd = "$pwd" + $pwd_array[(Get-Random -Maximum  ([array]$pwd_array).count)]
+    do {
+        $password = ""
+        for ($i = 0; $i -lt $length; $i++) {
+            $randomIndex = [System.Security.Cryptography.RandomNumberGenerator]::GetInt32(0, $characterList.Length)
+            $password += $characterList[$randomIndex]
+        }
+
+        [int]$hasLowerChar = $password -cmatch '[a-z]'
+        [int]$hasUpperChar = $password -cmatch '[A-Z]'
+        [int]$hasDigit = $password -match '[0-9]'
+        [int]$hasSymbol = $password.IndexOfAny($symbols) -ne -1
+
     }
-    $pwd 
-
-
-    }
-
+    until (($hasLowerChar + $hasUpperChar + $hasDigit + $hasSymbol) -ge 4)
+    
+    if ($AsSecureString) {
+        $password = $password | ConvertTo-SecureString -AsPlainText
+    } 
+    $password
+}

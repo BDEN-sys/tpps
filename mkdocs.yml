@@ -9,6 +9,7 @@ markdown_extensions:
   - pymdownx.superfences
 plugins:
   - search
+  - to-pdf
   - git-revision-date-localized:
       enable_creation_date: false
       type : datetime

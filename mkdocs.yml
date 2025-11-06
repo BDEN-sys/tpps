@@ -10,7 +10,7 @@ markdown_extensions:
 plugins:
   - search
   - to-pdf :
-    download_link: header
+      download_link: header
   - git-revision-date-localized:
       enable_creation_date: false
       type : datetime

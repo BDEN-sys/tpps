@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: 3.12
       - run: pip install \
-            mkdocs-material mkdocs-git-revision-date-localized-plugin
+            mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-to-pdf
       - run: mkdocs gh-deploy --config-file mkdocs.yml --force
  
   deploy_mkdocs:

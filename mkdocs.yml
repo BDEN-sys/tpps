@@ -13,6 +13,7 @@ plugins:
       download_link: header
       toc_title: "Sommaire"
       copyright: ""
+      cover_subtitle: ""
   - git-revision-date-localized:
       enable_creation_date: false
       type : datetime

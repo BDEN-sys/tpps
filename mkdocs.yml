@@ -12,8 +12,8 @@ plugins:
   - to-pdf :
       download_link: header
       toc_title: "Sommaire"
-      copyright: ""
-      cover_subtitle: ""
+      copyright: "Test"
+      cover_subtitle: "Test"
   - git-revision-date-localized:
       enable_creation_date: false
       type : datetime

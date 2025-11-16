@@ -117,9 +117,9 @@ Dans ce cas la commande implicite exécutée est **Import-module** ActiveDirecto
   * Forcer le changement de mot de passe à la première ouverture de session
   * Créer l’utilisateur dans l’OU précédemment crée
 
-Fichier CSV : [Lien](./serve/BaseDonneesExempleCsv.csv)
+Fichier CSV : [Lien](https://tpps.bden.fr/serve/BaseDonneesExempleCsv.csv)
 
-Fonction : [Remove-Diacritics](./serve/Remove-Diacritics.ps1)
+Fonction : [Remove-Diacritics](https://tpps.bden.fr/serve/Remove-Diacritics.ps1)
 
 ### Création d'utilisateurs Active Directory depuis une base de données MySQL
 
@@ -174,7 +174,7 @@ Fonction : [Get-Mysql](./serve/Get-Mysql.ps1) Script : [SetFolderPermission](./s
 
 * Remplacer le serveur de fichier hébergeant les répertoires personnels par ```\\srv-data2``` pour tous les utilisateurs créés préalablement.
 
-* À l'aide de la fonction [Fill-PDF](./serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](./serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://assets.bden.fr/tpps/itextsharp.dll ) générer un export pour chaque utilisateur de l'OU **Annuaire**.
+* À l'aide de la fonction [Fill-PDF](https://tpps.bden.fr/serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](https://tpps.bden.fr/serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://assets.bden.fr/tpps/itextsharp.dll ) générer un export pour chaque utilisateur de l'OU **Annuaire**.
 
 * Simuler la transmission par mail de chaque export PDF vers l'utilisateur concerné. (Générer la commande "send-mailmessage" sous forme d'une chaine de caractère)
 
@@ -182,7 +182,7 @@ Fonction : [Get-Mysql](./serve/Get-Mysql.ps1) Script : [SetFolderPermission](./s
 
 * Supprimer tous les comptes Active Directory que vous avez créés précédemment.
 
-* Télécharger le script suivant [GUI-AD.ps1](./serve/GUI-AD.ps1)
+* Télécharger le script suivant [GUI-AD.ps1](https://tpps.bden.fr/serve/GUI-AD.ps1)
 
 * Lancer le script suivant GUI-AD.ps1 - En principe une fenêtre vide doit s'afficher.
 

@@ -126,7 +126,7 @@ Fonction : [Remove-Diacritics](https://tpps.bden.fr/serve/Remove-Diacritics.ps1)
 #### Prérequis base de données MariaDB (Mysql)
 
 * Installer MariaDB sur votre machine :
-  * [mariadb-10.3.7-winx64.msi](https://assets.bden.fr/tpps/mariadb-10.3.7-winx64.msi)
+  * [mariadb-10.3.7-winx64.msi](https://drive.proton.me/urls/PKBTG6AJ6W#LQmQ2Xk7gMm4)
   * Choisir **UTF8** comme jeu de caractère
 
 * Dans une console CMD.exe, se connecter au serveur MariaDB :

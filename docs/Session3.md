@@ -126,7 +126,7 @@ Fonction : [Remove-Diacritics](https://tpps.bden.fr/serve/Remove-Diacritics.ps1)
 #### Prérequis base de données MariaDB (Mysql)
 
 * Installer MariaDB sur votre machine :
-  * [mariadb-10.3.7-winx64.msi](https://drive.proton.me/urls/PKBTG6AJ6W#LQmQ2Xk7gMm4)
+  * [mariadb-10.3.7-winx64.msi](https://filedn.eu/lH0OiMQas48RrgNN6AtDJA5/mariadb-10.3.7-winx64.msi)
   * Choisir **UTF8** comme jeu de caractère
 
 * Dans une console CMD.exe, se connecter au serveur MariaDB :
@@ -169,12 +169,12 @@ A l'aide des scripts fournis, créer tous les comptes présents dans la BDD MySQ
 * Créer l’utilisateur dans l’OU précédemment crée
 * Créer les dossiers personnels des utilisateurs avec attribution des droits NTFS inhérents dans le dossier partagé : ```\\srv-data\home\<username>```, voir script **SetFolderPermission.ps1** pour les droits NTFS
 
-Connecteur : [.Net Mysl](https://assets.bden.fr/tpps/mysql-connector-net-6.4.4.msi)
+Connecteur : [.Net Mysl](https://filedn.eu/lH0OiMQas48RrgNN6AtDJA5/mysql-connector-net-6.4.4.msi)
 Fonction : [Get-Mysql](https://tpps.bden.fr/serve/Get-Mysql.ps1) Script : [SetFolderPermission](https://tpps.bden.fr/serve/SetFolderPermission.ps1)
 
 * Remplacer le serveur de fichier hébergeant les répertoires personnels par ```\\srv-data2``` pour tous les utilisateurs créés préalablement.
 
-* À l'aide de la fonction [Fill-PDF](https://tpps.bden.fr/serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](https://tpps.bden.fr/serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://assets.bden.fr/tpps/itextsharp.dll) générer un export pour chaque utilisateur de l'OU **Annuaire**.
+* À l'aide de la fonction [Fill-PDF](https://tpps.bden.fr/serve/Fill-PDF.ps1), du fichier [Formulaire.pdf](https://tpps.bden.fr/serve/formulaire.pdf) et de la DLL [itextsharp.dll](https://filedn.eu/lH0OiMQas48RrgNN6AtDJA5/itextsharp.dll) générer un export pour chaque utilisateur de l'OU **Annuaire**.
 
 * Simuler la transmission par mail de chaque export PDF vers l'utilisateur concerné. (Générer la commande "send-mailmessage" sous forme d'une chaine de caractère)
 

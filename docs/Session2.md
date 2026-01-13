@@ -67,5 +67,5 @@
 * À l'aide de l'URL suivante, récupérer la liste des communes correspondant au code postal de votre choix :
 ```https://geo.api.gouv.fr/communes?codePostal=<code postal>```
 
-En cas d'erreur SSL/TLS, vous pouvez tentez l'utilisation de protocol TLS récents :
+En cas d'erreur SSL/TLS, vous pouvez tenter l'utilisation de protocol TLS récents :
 ```[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType] 'Tls12,Tls13'```

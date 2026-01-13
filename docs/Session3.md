@@ -73,8 +73,8 @@ Pour installer Active Directory, lancer la commande Powershell suivante :
 
 ```powershell
 Import-Module ADDSDeployment 
-Install-ADDSForest -CreateDnsDelegation:$false -DatabasePath "C:\Windows\NTDS" -DomainMode "Win2012" `
-   -DomainName "cesi.lan" -DomainNetbiosName "CESI" -ForestMode "Win2012" -InstallDns:$true `
+Install-ADDSForest -CreateDnsDelegation:$false -DatabasePath "C:\Windows\NTDS" -DomainMode "WinThreshold" `
+   -DomainName "cesi.lan" -DomainNetbiosName "CESI" -ForestMode "WinThreshold" -InstallDns:$true `
    -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SysvolPath "C:\Windows\SYSVOL" -Force:$true `
    -SafeModeAdministratorPassword (ConvertTo-SecureString "P@ssword" -AsPlainText -Force)
 ```

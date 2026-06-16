@@ -33,7 +33,7 @@
 
 ## Gestion système
 
-* Afficher le nombre de services arrêtés et démarrés en **seule ligne de commande**
+* Afficher le **nombre** de services arrêtés et démarrés en **seule ligne de commande**
 
 * Afficher tous les processus fabricant (Microsoft, AMD, Intel, etc..) et trier en ordre décroissant leurs nombres.
 

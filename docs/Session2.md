@@ -17,8 +17,6 @@
 
 * À l’aide du chemin de registre suivant, activer le bureau à distance de votre machine : ```HKLM\SYSTEM\currentcontrolset\control\terminal server\fdenytsconnections```
 
-* À l’aide du chemin de registre suivant, lister toutes les clés usb connectés à votre machine hôte : ```HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR```
-
 ## Formatage de l'affichage
 
 * Afficher toutes les propriétés de la commande ```Get-Process```

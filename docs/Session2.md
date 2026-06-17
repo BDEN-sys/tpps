@@ -19,7 +19,7 @@
 
 ## Formatage de l'affichage
 
-* Afficher toutes les propriétés avec leur valeurs d'un **seul** processus à l'aide de la commande ```Get-Process```
+* Afficher toutes les propriétés avec leurs valeurs d'un **seul** processus à l'aide de la commande ```Get-Process```
 
 * Puis choisir de n'afficher que les propriétés **ID, Name et WorkingSet**
 

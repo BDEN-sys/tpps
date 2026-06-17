@@ -39,7 +39,7 @@ Tester la connexion avec le routeur :
 Test-Connection 192.168.10.12 -count 1
 ```
 
-À quelle commande historique correspond la commande ci-dessous ?
+À quelle commande historique correspond la commande ci-dessus ?
 
 **Réponse :**
 
@@ -51,7 +51,7 @@ Get-NetAdapter -InterfaceIndex <id_carte_réseau> | Set-DnsClientServerAddress -
 
 ### Installation du service d’annuaire Active Directory
 
-Créer le domaine `cesi<id>.lan` à l’aide de Powershell :
+Créer le domaine `cesi.lan` à l’aide de Powershell :
 
 Installation des outils de management et déploiement Active Directory :
 
